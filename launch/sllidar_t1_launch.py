@@ -14,10 +14,16 @@ def generate_launch_description():
     channel_type = LaunchConfiguration('channel_type', default='udp')
     udp_ip = LaunchConfiguration('udp_ip', default='192.168.11.2')
     udp_port = LaunchConfiguration('udp_port', default='8089') 
-    frame_id = LaunchConfiguration('frame_id', default='laser')
+    frame_id = LaunchConfiguration('frame_id', default='laser_link')
     inverted = LaunchConfiguration('inverted', default='false')
     angle_compensate = LaunchConfiguration('angle_compensate', default='true')
     scan_mode = LaunchConfiguration('scan_mode', default='Sensitivity')
+
+    tf2_node = Node(package='tf2_ros',
+                node_executable='static_transform_publisher',
+                node_name='static_tf_pub_laser',
+                arguments=['0', '0', '0.02','0', '0', '0', '1','base_link','laser_link'],
+                )
 
     return LaunchDescription([
 
@@ -68,5 +74,6 @@ def generate_launch_description():
                          'angle_compensate': angle_compensate, 
                          'scan_mode': scan_mode}],
             output='screen'),
+        tf2_node,
     ])
 

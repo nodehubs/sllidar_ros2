@@ -14,9 +14,15 @@ def generate_launch_description():
     channel_type = LaunchConfiguration('channel_type', default='tcp')
     tcp_ip = LaunchConfiguration('tcp_ip', default='192.168.0.7')
     tcp_port = LaunchConfiguration('tcp_port', default='20108') 
-    frame_id = LaunchConfiguration('frame_id', default='laser')
+    frame_id = LaunchConfiguration('frame_id', default='laser_link')
     inverted = LaunchConfiguration('inverted', default='false')
     angle_compensate = LaunchConfiguration('angle_compensate', default='true')
+
+    tf2_node = Node(package='tf2_ros',
+                node_executable='static_transform_publisher',
+                node_name='static_tf_pub_laser',
+                arguments=['0', '0', '0.02','0', '0', '0', '1','base_link','laser_link'],
+                )
 
     return LaunchDescription([
 
@@ -61,6 +67,7 @@ def generate_launch_description():
                          'inverted': inverted, 
                          'angle_compensate': angle_compensate}],
             output='screen'),
+        tf2_node,
     ])
 
         

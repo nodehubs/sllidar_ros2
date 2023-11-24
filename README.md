@@ -6,7 +6,7 @@ SLLIDAR ROS2驱动，以ROS2标准消息格式发送激光雷达数据。
 
 完善的产品型号请以[lslidar官网](https://www.slamtec.com/) SLLIDAR X3为例进行演示。
 
-![SLLIDAR](images/lslidar.jpg  "v")
+![SLLIDAR](images/sllidar.jpg  "v")
 
 | 物料选项    | 清单      | 
 | ------- | ------------ | 
